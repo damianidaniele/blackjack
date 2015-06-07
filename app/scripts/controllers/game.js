@@ -13,7 +13,7 @@ angular.module( 'blackjackApp' )
    	
  
     $scope.init = function( numberOfPlayers ) { 
-    	var howManyPlayers = numberOfPlayers === !undefined ? numberOfPlayers : $routeParams.players;
+    	var howManyPlayers = numberOfPlayers !== undefined ? numberOfPlayers : $routeParams.players;
 		$scope.GameService = GameService;
 
     	GameService
@@ -37,5 +37,5 @@ angular.module( 'blackjackApp' )
 
 	$scope.newGame = function() {
 		$scope.init();
-	}
+	};
   }]);

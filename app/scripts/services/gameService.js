@@ -59,7 +59,7 @@ angular
 					if ( GameService.dealer.calculatePoints() ) {
 						GameService.endGame();
 						return;
-					};
+					}
 
 					if ( !GameService.players[0].calculatePoints() ) {
 						GameService.players[0].turn = true;
