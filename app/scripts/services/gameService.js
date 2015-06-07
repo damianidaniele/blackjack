@@ -46,6 +46,9 @@ angular
 						tempPlayer.id = iter;
 						tempPlayer.hand = [ GameService.deck.shift(), GameService.deck.shift() ];
 						tempPlayer.calculatePoints();
+						if ( tempPlayer.checkSplit() ) {
+							tempPlayer.canSplit = true;
+						}
 
 						GameService.players.push( tempPlayer );
 					}
@@ -77,15 +80,17 @@ angular
 
 			nextPlayer: function( player ) {
 
+				
+				var currentIndex = this.players.indexOf( player );
 				player.turn = false;
 
-				if ( player.id < this.players.length - 1 ) {
-					if ( this.players[ player.id + 1].status === 1 || this.players[ player.id + 1].status === 2 ) {
-						this.nextPlayer( this.players[ player.id + 1] );
+				if ( currentIndex < this.players.length - 1 ) {
+					if ( this.players[ currentIndex + 1].status === 1 || this.players[ currentIndex + 1].status === 2 ) {
+						this.nextPlayer( this.players[ currentIndex + 1] );
 						return;
 					}
+					this.players[ currentIndex + 1].turn = true; 
 
-					this.players[ player.id + 1].turn = true; 
 				} else {
 					this.dealer.turn = true;
 					this.playDealer();
@@ -167,6 +172,28 @@ angular
 
 				}, this );
 
+			},
+
+			splitHand: function( player ) {
+				console.log( 'split test');
+
+				if ( player.canSplit ) {
+					var currentIndex,
+						newPlayer = new Player();
+					newPlayer.name = player.name + ' (hand B)';
+					newPlayer.id = player.id;
+					newPlayer.hand = [ player.hand[1], this.deck.shift() ];
+					newPlayer.calculatePoints();
+					newPlayer.turn = false;
+
+					player.hand = [ player.hand[0], this.deck.shift() ];
+					player.calculatePoints();
+					currentIndex = this.players.indexOf( player );
+
+					this.players.splice( currentIndex + 1, 0, newPlayer );
+
+					return;
+				}
 			}
 		};
 

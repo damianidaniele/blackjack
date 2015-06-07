@@ -11,6 +11,7 @@ angular
 			this.message = false;
 			this.status = 0;
 			this.turn = false;
+			this.canSplit = false;
 			this.hand = [];
 		};
 
@@ -80,6 +81,10 @@ angular
 			}
 
 			return false;
+		};
+
+		Player.prototype.checkSplit = function() {
+			return this.hand[0].point === this.hand[1].point;
 		};
 
 		return Player;
