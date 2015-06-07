@@ -1,0 +1,45 @@
+<div class="row" ng-init="init()">
+  <div class="col-sm-12">
+    <div  class="alert alert-info" role="alert">{{GameService.message}}</div>
+  </div>
+</div>
+
+<div class="row">
+   <div class="col-sm-12">
+      <button class="btn btn-primary btn-large" ng-click="newGame()" ng-show="GameService.status">Play Again</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="player" ng-class="{ 'is-current' : game.dealer.turn }">
+    <h3>Dealer - <span>Points: {{game.dealer.points}}</span></h3>
+      <div class="deck">
+          <div class="card" ng-repeat="card in game.dealer.hand">
+            <span class="value {{card.suit}}">{{card.point}}</span>
+          </div>
+      </div>
+      <div  class="alert" 
+            ng-class="{ 'alert-success' : game.dealer.status === 1, 'alert-info' : game.dealer.status === 2, 'alert-danger' : game.dealer.status === 3 }" 
+            role="alert" 
+            ng-show="game.dealer.status">{{game.dealer.message}}</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="player" ng-class="{ 'is-current' : player.turn }" ng-repeat="player in game.players" >
+    <h3>{{player.name}} - <span>Points: {{player.points}}</span></h3>
+      <div class="deck">
+          <div class="card" ng-repeat="card in player.hand">
+            <span class="value {{card.suit}}">{{card.point}}</span>
+          </div>
+      </div>
+      <div  class="alert" 
+            ng-class="{ 'alert-success' : player.status === 1, 'alert-info' : player.status === 2, 'alert-danger' : player.status === 3 }" 
+            role="alert" 
+            ng-show="player.status">{{player.message}}</div>
+      <div class="commands" ng-show="player.turn">
+        <button class="btn btn-info" ng-click="hit( player )">Hit</button>
+        <button class="btn btn-warning" ng-click="stick( player )">Stick</button>
+      </div> 
+  </div>
+</div>
