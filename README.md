@@ -11,8 +11,9 @@ version 0.11.1.
 - compass 1.0.3 (Polaris)
 
 ## Build & development
-
-Run `grunt` for building and `grunt serve` for preview.
+- Run `npm install`
+- Run `bower install`
+- Run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
 
