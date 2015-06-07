@@ -24,7 +24,7 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: none;
   margin-bottom: 10px;
 
   /* Make the masthead heading the same height as the navigation */
@@ -88,4 +88,134 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+/**********************************/
+body {
+  background: lightgreen;
+}
+
+.top-row {
+  margin-top : 10px;
+}
+
+.player {
+    width: 30%;
+    min-width: 300px;
+    margin: 10px;
+    padding: 0 10px;
+    float: left;
+    height: 255px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dealer {
+  margin: 10px auto;
+  float: none;
+}
+
+.is-current {
+    border: 2px solid red;
+  }
+
+.deck {
+  position: relative;
+  height: 140px;
+}
+
+.card {
+    width: 64px;
+    height: 89px;
+    border: 1px solid #ababab;
+    border-radius: 5px;
+    background: #fedefe;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    margin: 0;
+    display: inline-block;
+    box-shadow: 1px 1px 5px #333;
+}
+
+.card:nth-of-type(2) {
+  left: 40px;
+}
+
+.card:nth-of-type(3) {
+  left: 80px;
+}
+
+.card:nth-of-type(4) {
+  left: 120px;
+}
+
+.card:nth-of-type(5) {
+  left: 160px;
+}
+
+.card:nth-of-type(6) {
+  left: 200px;
+}
+
+.card:nth-of-type(7) {
+  top: 40px;
+  left: 0;
+}
+
+.card:nth-of-type(8) {
+  top: 40px;
+  left: 40px;
+}
+
+.card:nth-of-type(9) {
+  top: 40px;
+  left: 80px;
+}
+
+.card:nth-of-type(10) {
+  top: 40px;
+  left: 120px;
+}
+
+.card:nth-of-type(11) {
+  top: 40px;
+  left: 160px;
+}
+
+.value {
+  position: relative;
+  top: 0;
+  left: 5px;
+  font-size: 20px;
+}
+
+.clubs,
+.spades {
+  color: black;
+}
+
+.hearts,
+.diamonds {
+  color: red;
+}
+
+.diamonds::after {
+  content: '\2666';
+}
+
+.clubs::after {
+  content: '\2663';
+}
+
+.spades::after {
+  content: '\2660';
+}
+
+.hearts::after {
+  content: '\2665';
+}
+
+.commands {
+  text-align: center;
 }
