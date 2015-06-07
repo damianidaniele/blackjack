@@ -3,6 +3,13 @@
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.1.
 
+## Requirements
+
+- nodeJS >= 0.10.28
+- grunt-cli 0.1.13
+- grunt 0.4.5
+- compass 1.0.3 (Polaris)
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
