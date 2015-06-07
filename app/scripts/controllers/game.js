@@ -38,4 +38,8 @@ angular.module( 'blackjackApp' )
 	$scope.newGame = function() {
 		$scope.init();
 	};
+
+	$scope.splitHand = function( player ) {
+		$scope.GameService.splitHand( player );
+	};
   }]);
