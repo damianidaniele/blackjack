@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: AboutCtrl', function () {
+describe('Controller: GameCtrl', function () {
 
   // load the controller's module
   beforeEach(module('blackjackApp'));
@@ -11,12 +11,9 @@ describe('Controller: AboutCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AboutCtrl = $controller('AboutCtrl', {
+    GameCtrl = $controller('GameCtrl', {
       $scope: scope
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
 });
