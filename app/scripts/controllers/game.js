@@ -8,38 +8,44 @@
  * Game Controller of the blackjackApp
  */
 
-angular.module( 'blackjackApp' )
-  .controller( 'GameCtrl', [  '$scope', '$routeParams', 'GameService', function ( $scope, $routeParams, GameService ) {
-   	
- 
-    $scope.init = function( numberOfPlayers ) { 
-    	var howManyPlayers = numberOfPlayers !== undefined ? numberOfPlayers : $routeParams.players;
-		$scope.GameService = GameService;
+(function() {
+	function GameCtrl( $routeParams, GameService ) {
+		
+		var vm = this;
 
-    	GameService
-		.init( howManyPlayers )
-		.then( function( data ) {
-			$scope.game = data;
-		});
-	};
+		this.init = function( numberOfPlayers ) { 
+			var howManyPlayers = numberOfPlayers !== undefined ? numberOfPlayers : $routeParams.players;
+			this.gameService = GameService;
 
-	$scope.hit = function( player ) {
-		player.hand.push( $scope.game.deck.shift() );
+			this.gameService
+				.init( howManyPlayers )
+				.then( function( data ) {
+					vm.gameData = data;
+				});
+		};
 
-		if ( player.calculatePoints() ) {
-			$scope.GameService.nextPlayer( player );
-		}
-	};
+		this.hit = function( player ) {
+			player.hand.push( vm.gameData.deck.shift() );
 
-	$scope.stick = function( player ) {
-		$scope.GameService.nextPlayer( player );
-	};
+			if ( player.calculatePoints() ) {
+				vm.gameService.nextPlayer( player );
+			}
+		};
 
-	$scope.newGame = function() {
-		$scope.init();
-	};
+		this.stick = function( player ) {
+			vm.gameService.nextPlayer( player );
+		};
 
-	$scope.splitHand = function( player ) {
-		$scope.GameService.splitHand( player );
-	};
-  }]);
+		this.newGame = function() {
+			vm.init();
+		};
+
+		this.splitHand = function( player ) {
+			vm.gameService.splitHand( player );
+		};
+	}
+
+	angular.module( 'blackjackApp' )
+	  .controller( 'GameCtrl', [ '$routeParams', 'GameService', GameCtrl]);
+
+  })();
