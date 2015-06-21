@@ -7,29 +7,35 @@
  * # MainCtrl
  * Main Controller of the blackjackApp
  */
-angular.module( 'blackjackApp' )
-  .controller( 'MainCtrl', ['$scope', '$location', function ( $scope, $location ) {
+(function() {
+    function validate( value ) {
+        if ( isNaN( parseInt( value ) ) && !isFinite( value ) ) {
+            return false;
+        } 
+        
+        if ( parseInt( value ) < 1 || parseInt( value ) > 7 ) {
+            return false;
+        }
+        return true;
+    } 
 
-  	$scope.players = 1;
-  	$scope.invalid = false;
+    function MainCtrl( $location ) {
 
-  	function validate( value ) {
-  		if ( isNaN( parseInt( value ) ) && !isFinite( value ) ) {
-  			return false;
-  		} 
-		if ( parseInt( value ) < 1 || parseInt( value ) > 7 ) {
-			return false;
-		}
-		return true;
-  	} 
+      this.players = 1;
+      this.invalid = false;
 
-  	$scope.play = function() {
+      this.play = function() {
 
-  		if ( validate( $scope.players ) ) {
-  			$location.path( '/play/' + $scope.players );
-  		} else {
-  			$scope.invalid = true;
-  		}
-  	};
+          if ( validate( this.players ) ) {
+            $location.path( '/play/' + this.players );
+          } else {
+            this.invalid = true;
+          }
+        };
+    }
+
+    angular.module( 'blackjackApp' )
+      .controller( 'MainCtrl', ['$location', MainCtrl]);
     
-  }]);
+})();
+
